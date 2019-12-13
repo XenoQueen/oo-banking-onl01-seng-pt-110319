@@ -10,14 +10,6 @@ class Transfer
     @duplicate_check = 0
   end
 
-  def valid?
-    if @sender.valid? && @receiver.valid?
-      true
-    else
-      false
-    end
-  end
-
   def execute_transaction
     @duplicate_check += 1
     if  @sender.valid? && @receiver.valid? && @duplicate_check <= 1 && @sender.balance - @amount > 0
@@ -27,6 +19,14 @@ class Transfer
     else
       @status = "rejected"
       "Transaction rejected. Please check your account balance."
+    end
+  end
+  
+  def valid?
+    if @sender.valid? && @receiver.valid?
+      true
+    else
+      false
     end
   end
 
